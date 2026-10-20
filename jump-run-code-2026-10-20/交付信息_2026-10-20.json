@@ -1,0 +1,19 @@
+{
+  "版本": "1.0",
+  "生成日期时间": "2026-10-20T21:29:30+08:00",
+  "修改日期时间": "2026-10-20T23:50:27+08:00",
+  "对话ID": "01a15930-43fc-7152-a74b-362a86984db8",
+  "对话深度链接": "codex://threads/01a15930-43fc-7152-a74b-362a86984db8",
+  "生成方式": "HyperFrames + Canvas 原图裁片骨骼网格动画",
+  "视频": {
+    "宽": 1280,
+    "高": 720,
+    "帧率": 30,
+    "时长秒": 6.4,
+    "帧数": 192
+  },
+  "动作": "奔跑→蓄力→跃过木箱→落地→继续奔跑",
+  "发布版本": "1.1",
+  "在线浏览链接": "https://videotowords-studio.github.io/spriteai-artifacts/jump-run-code-2026-10-20/",
+  "GitHub资料链接": "https://github.com/videotowords-studio/spriteai-artifacts/tree/main/jump-run-code-2026-10-20"
+}

@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1280,height=720">
+<meta name="description" content="原图裁片与代码骨骼驱动的奔跑跳跃动画。版本1.0，2026-10-20。">
+<script src="assets/gsap.min.js"></script>
+<style>*{box-sizing:border-box;margin:0;padding:0}html,body{width:1280px;height:720px;overflow:hidden;background:#f5efdf}#root{width:100%;height:100%;position:relative}#stage{display:block;width:1280px;height:720px;image-rendering:pixelated}</style>
+</head>
+<body>
+<main id="root" data-composition-id="jump-run" data-start="0" data-duration="6.4" data-width="1280" data-height="720" data-fps="30">
+<canvas id="stage" class="clip" width="1280" height="720" data-start="0" data-duration="6.4" data-track-index="0" data-layout-allow-overflow aria-label="角色奔跑，跃过障碍，落地后继续奔跑"></canvas>
+</main>
+<script>
+const tl=gsap.timeline({paused:true});
+tl.from('#stage',{opacity:0,duration:0.12,ease:'power2.out'},0.04);
+window.__timelines=window.__timelines||{};
+window.__timelines['jump-run']=tl;
+</script>
+<script src="animation.js"></script>
+</body>
+</html>
