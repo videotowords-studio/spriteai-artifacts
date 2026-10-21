@@ -1,0 +1,376 @@
+{
+  "before": "Stored floor8 local analysis",
+  "after": "Direct invocation of current production analyzeFrame; floor16",
+  "boundsConvention": "left/top zero-based; width/height include edge pixels; center uses left+width/2 and top+height/2",
+  "cases": [
+    {
+      "id": "y-min",
+      "title": "中心 Y 最小：源帧 1 → 0",
+      "axis": "y",
+      "kind": "min",
+      "before": 1,
+      "after": 0,
+      "description": "源帧 1 右上角的孤立背景像素被清除，中心 Y 从 36 恢复到 48。源帧 0 的中心 Y 本来就是 48；新规则下多帧并列最小，扫描时保留最早的源帧 0。",
+      "note": "这是已确认的孤立背景噪点导致的误选。",
+      "comparisons": [
+        {
+          "index": 1,
+          "floor": 8,
+          "bounds": {
+            "left": 37,
+            "top": 0,
+            "width": 59,
+            "height": 72
+          },
+          "center": {
+            "x": 66.5,
+            "y": 36
+          },
+          "foregroundRatio": 0.08062065972222222
+        },
+        {
+          "index": 1,
+          "floor": 16,
+          "bounds": {
+            "left": 37,
+            "top": 24,
+            "width": 23,
+            "height": 48
+          },
+          "center": {
+            "x": 48.5,
+            "y": 48
+          },
+          "foregroundRatio": 0.0788845486111111
+        },
+        {
+          "index": 0,
+          "floor": 8,
+          "bounds": {
+            "left": 37,
+            "top": 24,
+            "width": 23,
+            "height": 48
+          },
+          "center": {
+            "x": 48.5,
+            "y": 48
+          },
+          "foregroundRatio": 0.07975260416666667
+        },
+        {
+          "index": 0,
+          "floor": 16,
+          "bounds": {
+            "left": 37,
+            "top": 24,
+            "width": 23,
+            "height": 48
+          },
+          "center": {
+            "x": 48.5,
+            "y": 48
+          },
+          "foregroundRatio": 0.07921006944444445
+        }
+      ],
+      "newValue": 48,
+      "newTiedFrames": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        77,
+        78,
+        79,
+        80,
+        81,
+        82,
+        83,
+        84,
+        85,
+        86,
+        87,
+        88,
+        89,
+        90,
+        91,
+        92,
+        93,
+        94,
+        95,
+        96
+      ]
+    },
+    {
+      "id": "x-min",
+      "title": "中心 X 最小：源帧 22 → 30",
+      "axis": "x",
+      "kind": "min",
+      "before": 22,
+      "after": 30,
+      "description": "源帧 22 原先最左侧含一个孤立像素 (29,59)，另有一些近背景边缘。容差提高后，包围盒左侧从 29 收到 31，宽度从 37 变成 35，中心 X 从 47.5 变成 48.5。源帧 30 的中心 X 仍为 48，因此成为新的最小值。",
+      "note": "不仅去掉了孤立点，还改变了人物近背景边缘；不能把所有被清除像素都认定为噪点。",
+      "comparisons": [
+        {
+          "index": 22,
+          "floor": 8,
+          "bounds": {
+            "left": 29,
+            "top": 27,
+            "width": 37,
+            "height": 45
+          },
+          "center": {
+            "x": 47.5,
+            "y": 49.5
+          },
+          "foregroundRatio": 0.11067708333333333
+        },
+        {
+          "index": 22,
+          "floor": 16,
+          "bounds": {
+            "left": 31,
+            "top": 27,
+            "width": 35,
+            "height": 45
+          },
+          "center": {
+            "x": 48.5,
+            "y": 49.5
+          },
+          "foregroundRatio": 0.10405815972222222
+        },
+        {
+          "index": 30,
+          "floor": 8,
+          "bounds": {
+            "left": 30,
+            "top": 27,
+            "width": 36,
+            "height": 45
+          },
+          "center": {
+            "x": 48,
+            "y": 49.5
+          },
+          "foregroundRatio": 0.1064453125
+        },
+        {
+          "index": 30,
+          "floor": 16,
+          "bounds": {
+            "left": 30,
+            "top": 27,
+            "width": 36,
+            "height": 45
+          },
+          "center": {
+            "x": 48,
+            "y": 49.5
+          },
+          "foregroundRatio": 0.10394965277777778
+        }
+      ],
+      "newValue": 48,
+      "newTiedFrames": [
+        30,
+        31,
+        32,
+        87,
+        88,
+        89,
+        90,
+        91,
+        92
+      ]
+    },
+    {
+      "id": "y-max",
+      "title": "中心 Y 最大：源帧 41 → 34",
+      "axis": "y",
+      "kind": "max",
+      "before": 41,
+      "after": 34,
+      "description": "源帧 41 的包围盒和中心 Y 完全没变，仍然是 51。变化发生在更早的源帧 34：近背景外沿收缩后，top 从 27 变为 30、height 从 46 变为 42，中心 Y 从 50 变为 51。34 与 41 并列最大，代码只在严格更大时更新，因此先遇到的 34 获胜。",
+      "note": "41 并没有失去最大值资格；这是“34 追平 + 并列保留最早帧”的结果。",
+      "comparisons": [
+        {
+          "index": 41,
+          "floor": 8,
+          "bounds": {
+            "left": 35,
+            "top": 30,
+            "width": 61,
+            "height": 42
+          },
+          "center": {
+            "x": 65.5,
+            "y": 51
+          },
+          "foregroundRatio": 0.11393229166666667
+        },
+        {
+          "index": 41,
+          "floor": 16,
+          "bounds": {
+            "left": 35,
+            "top": 30,
+            "width": 61,
+            "height": 42
+          },
+          "center": {
+            "x": 65.5,
+            "y": 51
+          },
+          "foregroundRatio": 0.10492621527777778
+        },
+        {
+          "index": 34,
+          "floor": 8,
+          "bounds": {
+            "left": 29,
+            "top": 27,
+            "width": 67,
+            "height": 46
+          },
+          "center": {
+            "x": 62.5,
+            "y": 50
+          },
+          "foregroundRatio": 0.1765407986111111
+        },
+        {
+          "index": 34,
+          "floor": 16,
+          "bounds": {
+            "left": 30,
+            "top": 30,
+            "width": 66,
+            "height": 42
+          },
+          "center": {
+            "x": 63,
+            "y": 51
+          },
+          "foregroundRatio": 0.1274956597222222
+        }
+      ],
+      "newValue": 51,
+      "newTiedFrames": [
+        34,
+        35,
+        36,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61,
+        62
+      ]
+    },
+    {
+      "id": "x-max",
+      "title": "中心 X 最大：源帧 65 → 66",
+      "axis": "x",
+      "kind": "max",
+      "before": 65,
+      "after": 66,
+      "description": "源帧 65 的包围盒从 (39,29,57,43) 变为 (41,29,54,43)，中心 X 从 67.5 变为 68。源帧 66 的左侧收缩更多，从 38 变为 43，宽度从 57 变成 51，中心 X 从 66.5 变为 68.5，因此超过 65。",
+      "note": "中心来自整个前景包围盒，不是人物重心。两侧边缘收缩不对称，会改变中心坐标。",
+      "comparisons": [
+        {
+          "index": 65,
+          "floor": 8,
+          "bounds": {
+            "left": 39,
+            "top": 29,
+            "width": 57,
+            "height": 43
+          },
+          "center": {
+            "x": 67.5,
+            "y": 50.5
+          },
+          "foregroundRatio": 0.11143663194444445
+        },
+        {
+          "index": 65,
+          "floor": 16,
+          "bounds": {
+            "left": 41,
+            "top": 29,
+            "width": 54,
+            "height": 43
+          },
+          "center": {
+            "x": 68,
+            "y": 50.5
+          },
+          "foregroundRatio": 0.0964626736111111
+        },
+        {
+          "index": 66,
+          "floor": 8,
+          "bounds": {
+            "left": 38,
+            "top": 28,
+            "width": 57,
+            "height": 44
+          },
+          "center": {
+            "x": 66.5,
+            "y": 50
+          },
+          "foregroundRatio": 0.11534288194444445
+        },
+        {
+          "index": 66,
+          "floor": 16,
+          "bounds": {
+            "left": 43,
+            "top": 28,
+            "width": 51,
+            "height": 44
+          },
+          "center": {
+            "x": 68.5,
+            "y": 50
+          },
+          "foregroundRatio": 0.0959201388888889
+        }
+      ],
+      "newValue": 68.5,
+      "newTiedFrames": [
+        66,
+        67
+      ]
+    }
+  ]
+}
